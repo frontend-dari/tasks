@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task</title>
+</head>
+<body>
+
+    <style>
+
+    ul {
+    padding: 0;
+    margin: 0;
+    }
+
+    li {
+    list-style: none;
+    }
+
+    .slider-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 7%;
+    }
+
+    .arrow {
+        text-decoration: none;
+        font-size: 30px;
+        font-weight: bold;
+        color: #515cdb;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+    color: #ff6163;
+    }
+
+        .slider {
+            display: flex;
+            margin: 0 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        .items {
+            display: flex;
+            position: relative;
+            font-size: 26px;
+            color: #292929;
+            right: 0;
+            transition: right 0.1s;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 232, 207);
+            border: 1px solid #292929;
+        }
+    </style>
+
+    <div class="slider-container">
+        <a href="#" class="arrow" id="left">&#8592</a>
+        <div class="slider">
+            <ul class="items" id="items">
+                <li class="item">1</li>
+                <li class="item">2</li>
+                <li class="item">3</li>
+                <li class="item">4</li>
+                <li class="item">5</li>
+                <li class="item">6</li>
+                <li class="item">7</li>
+                <li class="item">8</li>
+            </ul>
+        </div>
+        <a href="#" class="arrow" id="right">&#8594</a>
+    </div>
+
+    <script>
+
+        const leftButton = document.querySelector("#left");
+        const rightButton = document.querySelector("#right");
+        const items = document.querySelector("#items");
+        const computedStiles = getComputedStyle(items);
+
+        rightButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+    let currentRight = parseInt(computedStiles.right);
+
+    if (currentRight < 500) {
+      items.style.right = `${currentRight + 100}px`;
+    }
+  });
+
+  leftButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    let currentRight = parseInt(computedStiles.right);
+
+    if (currentRight > 0) {
+      items.style.right = `${currentRight - 100}px`;
+    }
+  });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM: task 2</title>
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem magnam
+        ratione quasi alias adipisci molestias doloribus, provident eum natus
+        rerum, numquam delectus cum at nobis consectetur deserunt perspiciatis
+        eveniet temporibus.
+      </p>
+      <button class="btn" id="openOverlay">открыть</button>
+    </div>
+
+    <style>
+
+        body, html {
+            position: relative;
+            height: 100%;
+            margin: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(00, 00, 00, .2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-container {
+            position: relative;
+        }
+        
+        .content {
+            width: 400px;
+            background: rgb(97, 97, 97);
+            border-radius: 5px;
+            padding: 10px;
+            color: #fff;
+            margin: 0;
+        }
+        
+        .close {
+            color: #fff;
+            position: absolute;
+            right: -5px;
+            top: -10px;
+            background: #d00;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .close:hover {
+            background: #d33;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10% 22%;
+        }
+        
+        .btn {
+            background: #a492e6;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 18px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            opacity: 0.8;
+        }
+        
+    </style>
+
+    <script>
+    const openButton = document.querySelector("#openOverlay");
+    const body = document.body;
+
+    openButton.addEventListener("click", e => {
+        const overlayElement = document.createElement("div");
+        overlayElement.classList.add("overlay");
+
+        overlayElement.addEventListener("click", e =>{
+            if (e.target == overlayElement) {
+            closeElement.click();
+    }})
+
+        const containerElement = document.createElement("div")
+        containerElement.classList.add("modal-container");
+
+        const contentElement = document.createElement("div");
+        contentElement.classList.add("content");
+        contentElement.innerHTML = "Hello, world!"
+
+        const closeElement = document.createElement("a");
+        closeElement.classList.add("close");
+        closeElement.textContent = "x";
+
+        closeElement.href = "#";
+
+        closeElement.addEventListener("click", e => {
+            e.preventDefault();
+            body.removeChild(overlayElement);
+        })
+        
+        body.appendChild(overlayElement);
+        overlayElement.appendChild(containerElement);
+        containerElement.appendChild(closeElement);
+        containerElement.appendChild(contentElement);
+    })
+    </script>
+
+  </body>
+</html>
